@@ -6,7 +6,7 @@ keras
 tensorflow
 h5py
 pillow
-sklearn
+scikit-learn
 pyswarms
 protobuf
 nltk

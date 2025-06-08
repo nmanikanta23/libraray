@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Dashboard</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px 30px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+        }
+        .logout-btn {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            background-color: #e74c3c;
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        .logout-btn:hover {
+            background-color: #c0392b;
+        }
+        .card {
+            background-color: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #2c3e50;
+            margin-top: 0;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3498db;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .no-books {
+            text-align: center;
+            color: #7f8c8d;
+            padding: 20px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Welcome, {{ user.username }}</h1>
+            <a href="{% url 'logout' %}" class="logout-btn">Logout</a>
+        </header>
+
+        <div class="card">
+            <h2>Your Allocated Books</h2>
+            
+            {% if allocations %}
+                <table>
+                    <tr>
+                        <th>Book Title</th>
+                        <th>Author</th>
+                        <th>Allocated Date</th>
+                    </tr>
+                    {% for allocation in allocations %}
+                        <tr>
+                            <td>{{ allocation.book.title }}</td>
+                            <td>{{ allocation.book.author }}</td>
+                            <td>{{ allocation.allocated_date }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            {% else %}
+                <p class="no-books">No books currently allocated to you.</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+numpy
+matplotlib 
+pandas
+opencv-python
+keras 
+tensorflow
+h5py
+pillow
+sklearn
+pyswarms
+protobuf
+nltk
+django
+pymysql
+opencv-python
+mysqlclient 
+gunicorn
